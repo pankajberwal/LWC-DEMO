@@ -1,0 +1,7 @@
+.paginator-container {
+    display: flex;
+    justify-content: right;
+    margin-top: 10px;
+    align-items: baseline;
+    margin-bottom: 5px;
+}

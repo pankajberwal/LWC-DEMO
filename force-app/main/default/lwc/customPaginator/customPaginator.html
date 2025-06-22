@@ -1,0 +1,10 @@
+<template>
+    <div lwc:if={showPaginator} class="paginator-container">
+        <lightning-button-icon icon-name="utility:chevronleft" disabled={isPreviousDisabled} alternative-text="previous" title="Previous" onclick={handlePrevious} class="slds-p-horizontal_small"></lightning-button-icon>
+
+        <p>( {pageStartIndex} - {pageEndIndex} of {totalRecords} )</p>
+
+        <lightning-button-icon icon-name="utility:chevronright" disabled={isNextDisabled} alternative-text="next" title="Next" onclick={handleNext} class="slds-p-horizontal_small"></lightning-button-icon>
+    </div>
+    
+</template>

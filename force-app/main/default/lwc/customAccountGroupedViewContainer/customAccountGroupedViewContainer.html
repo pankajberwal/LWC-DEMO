@@ -1,0 +1,38 @@
+<template>
+    <div>
+        <lightning-card title="Custom Account Records(Grouped by Account Type)" class="slds-p-around_medium ">
+            <lightning-spinner alternative-text="Loading" size="large" if:true={pageSpinner}></lightning-spinner>
+
+            <div slot='actions' class="slds-p-horizontal_small slds-p-vertical_small">
+                <lightning-button label="Refresh All" onclick={handlePageRefresh}
+                    icon-name="utility:refresh"></lightning-button>
+            </div>
+            <div class="slds-p-around_medium">
+                <lightning-tabset variant="scoped" class="slds-p-around_medium" active-tab-value={activeTabValue}>
+                    <template for:each={typeOptions} for:item="type">
+                        <lightning-tab key={type.value} label={type.label} value={type.value}
+                            onactive={handleActiveTab}>
+                            <div class="slds-grid slds-grid_align-spread slds-m-bottom_small">
+                                <h3 class="slds-text-heading_small">Custom Account Records for {type.label}</h3>
+                                <lightning-button-icon data-type={type.value} icon-name="utility:refresh"
+                                    alternative-text="Refresh Tab" title="Refresh Tab"
+                                    onclick={handleTabRefresh}></lightning-button-icon>
+                            </div>
+                            <div class="slds-box">
+                                <div lwc:if={tableSpinner}>
+                                    <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+                                </div>
+                                <lightning-datatable data={viewableItems} columns={columns} key-field="Id"
+                                    hide-checkbox-column>
+                                </lightning-datatable>
+
+                                <c-custom-paginator data-id={type.value} onnext={handleNext} onprevious={handlePrevious}
+                                    paginate-size={paginateSize}></c-custom-paginator>
+                            </div>
+                        </lightning-tab>
+                    </template>
+                </lightning-tabset>
+            </div>
+        </lightning-card>
+    </div>
+</template>
